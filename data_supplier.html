@@ -1,0 +1,135 @@
+{% include 'header.html' %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <!-- <div class="col-sm-6">
+            <h1 class="m-0">Data Supplier</h1>
+          </div> -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card" id="tbl_masterbarang">
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <div class="panel-heading">
+                    <div class="col-sm-6">
+                      <h3 class="m-0">Data Supplier</h3>
+                    </div>
+                      <!-- Button trigger modal tambah data -->
+                      <div style="float: right;">
+                        <button type="button" class="btn btn-success btn-sm center-block" role="button" data-toggle="modal" data-target="#tambahdata"><i class="fas fa-plus"></i>
+                          Tambah Data
+                        </button>
+                      </div>
+                      <!-- Modal -->
+                      <div class="modal fade" id="tambahdata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                          <div class="modal-header" style="background-image: url('static/dist/img/bg.jpg');">
+                            <h5 class="modal-title" id="exampleModalLabel">Form Tambah Data</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <!-- form start -->
+                            <form role="form" action="{{ url_for('insert_supplier') }}" method="POST">
+                              <div class="card-body">
+                                <div class="form-group">
+                                  <label for="kode_supplier">Kode Supplier</label>
+                                  <input type="number" class="form-control" id="kode_supplier" name="kode_supplier" placeholder="Masukkan Kode Supplier">
+                                </div>
+                                <div class="form-group">
+                                  <label for="nama_supplier">Nama Supplier</label>
+                                  <input type="text" class="form-control" id="nama_supplier" name="nama_supplier" placeholder="Masukkan Nama Supplier">
+                                </div>
+                                <div class="form-group">
+                                  <label for="alamat">Alamat</label>
+                                  <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat Supplier">
+                                </div>
+                                <div class="form-group">
+                                  <label for="no_telepon">No. Telepon</label>
+                                  <input type="text" class="form-control" id="no_telepon" name="no_telepon" placeholder="Masukkan No. Telepon">
+                                </div>
+                              </div>
+                              <div class="modal-footer" style="background-image: url('static/dist/img/bg.jpg');">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                              </div>
+                              <!-- /.card-body -->
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <br>
+                  <br>
+                  <thead class="p-3 mb-2 bg-success text-white" style="text-align: center;">
+                    <tr>
+                      <th style="width: 1px;">No</th>
+                      <th style="width: 1px;">Kode Supplier</th>
+                      <th style="width: 20px;">Nama Supplier</th>
+                      <th style="width: 20px;">Alamat</th>
+                      <th style="width: 20px;">No. Telepon</th>
+                      <th style="width: 30px;">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% set no=namespace(value=1) %}
+                    {% for row in container_supplier %}
+                    <tr>
+                      <td style="text-align: center;">{{ no.value }}</td>
+                      {% set no.value=no.value+1 %}
+                      <td>{{ row[0] }}</td>
+                      <td>{{ row[1] }}</td>
+                      <td>{{ row[2] }}</td>
+                      <td>{{ row[3] }}</td>
+                      <td style="text-align: center;">{{ row[4] }}<a href="#" class="btn btn-dark btn-sm" role="button" class="btn btn-primary" data-toggle="modal" data-target="#editdata"><i class="far fa-edit"></i></a>
+                          {{ row[5] }}<a href="{{ url_for('delete_supplier', kode_supplier = row[0]) }}" class="btn btn-danger btn-sm" role="button"><i class="far fa-trash-alt"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="editdata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header" style="background-image: url('static/dist/img/bg.jpg');">
+                          <h5 class="modal-title" id="exampleModalLabel">Form Edit Data</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          ...
+                        </div>
+                        <div class="modal-footer" style="background-image: url('static/dist/img/bg.jpg');">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% include 'footer.html' %}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitoring Toko</title>
+
+  <!--favicon-->
+  <link rel="icon" href="{{ url_for('static', filename='dist/img/belanja.png') }}" type="image/x-icon">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css' ) }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' ) }}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/icheck-bootstrap/icheck-bootstrap.min.css' ) }}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/jqvmap/jqvmap.min.css' ) }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/adminlte.min.css' ) }}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/overlayScrollbars/css/OverlayScrollbars.min.css' ) }}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.css' ) }}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/summernote/summernote-bs4.min.css' ) }}">
+  <style type=text/css>
+    #tbl_masterbarang {
+      background-image: url("static/dist/img/putih_2.jpg");
+      background-size: cover;
+    }
+  </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img src="{{ url_for('static', filename='dist/img/loading1.gif' ) }}" alt="logo" height="200" width="200">
+  </div>
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-image: url('static/dist/img/putih_2.jpg'); height: 90px;">
+    <!-- Left navbar links -->
+    <!-- <ul class="navbar-nav">
+      <li class="nav-item d-none d-sm-inline-block">
+        <div style="text-align: center;">
+          <div>
+            <a href="{{ url_for('logout') }}" class="nav-link">
+              <i class="fas fa-home" style="font-size: 25px;"></i>
+              <p style="font-size: 20px;">Home</p>
+            </a>
+          </div><br>
+        </div>
+      </li>
+    </ul> -->
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item d-none d-sm-inline-block">
+        <div style="text-align: center;">
+          <div>
+            <a href="{{ url_for('logout') }}" class="nav-link">
+              <i class="fas fa-sign-out-alt" style="font-size: 25px;"></i>
+              <p style="font-size: 20px;">Logout</p>
+            </a>
+          </div><br>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: url('static/dist/img/bg.jpg');">
+    <!-- Brand Logo -->
+    <a href="{{ url_for('index') }}" class="nav-link">
+      <img src="{{ url_for('static', filename='dist/img/belanja.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .9; width: 150px; height: auto; padding: 5px; margin: 10px; margin-left: 35px;">
+      <!-- <span>Sistem Manajemen Penjualan</span> -->
+    </a><br>
+    <!-- <div>
+      <h3 style="margin-left: 75px; color: aliceblue;"><b>E-Kasir</b></h3>
+    </div> -->
+
+    <!-- Sidebar -->
+    <div class="sidebar" style="background-image: url('static/dist/img/bg.jpg'); background-size: cover;">
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2" style="font-size: 20px;">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" >
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+          <!-- MASTER DATA -->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link" style="color: aliceblue;">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Master Data
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item">
+                <a href="{{ url_for('barang') }}" class="nav-link" style="color: aliceblue;">
+                  <p  style=" color: aliceblue;">Data Barang</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item">
+                <a href="{{ url_for('supplier') }}" class="nav-link" style="color: aliceblue;">
+                  <p  style=" color: aliceblue;">Data Supplier</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- TRANSAKSI -->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link" style="color: aliceblue;">
+              <i class="nav-icon far fa-handshake"></i>
+              <p>
+                Transaksi
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item">
+                <a href="" class="nav-link" style="color: aliceblue;">
+                  <p>Data Transaksi</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- MANAJEMEN USER -->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link" style="color: aliceblue;">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Manajemen User
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item">
+                <a href="{{ url_for('pengguna') }}" class="nav-link" style="color: aliceblue;">
+                  <p>Data User</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <!-- LAPORAN -->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link" style="color: aliceblue;">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p>
+                Laporan
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item">
+                <a href="#" class="nav-link" style="color: aliceblue;">
+                  <p>Riwayat Laporan</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  

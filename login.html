@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Design by foolishdeveloper.com -->
+    <title>Monitoring Toko</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    
+    <!--favicon-->
+    <link rel="icon" href="{{ url_for('static', filename='dist/img/belanja.png') }}" type="image/x-icon">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css' ) }}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' ) }}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/icheck-bootstrap/icheck-bootstrap.min.css' ) }}">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/jqvmap/jqvmap.min.css' ) }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/adminlte.min.css' ) }}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/overlayScrollbars/css/OverlayScrollbars.min.css' ) }}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.css' ) }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/summernote/summernote-bs4.min.css' ) }}">
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+        *:before,
+        *:after{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-image: url('static/dist/img/bg_2.png');
+            background-size: cover;
+        }
+        .background{
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+        }
+        
+        form{
+            height: 580px;
+            width: 400px;
+            background-color: rgba(255,255,255,0.13);
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(8,7,16,0.6);
+            padding: 50px 35px;
+        }
+        form *{
+            font-family: 'Poppins',sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+        }
+        form h3{
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+
+        label{
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        input{
+            display: block;
+            height: 50px;
+            width: 100%;
+            background-image: url('static/dist/img/putih_2.jpg');
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+            color: black;
+        }
+        ::placeholder{
+            color: black;
+        }
+        #button1{
+            margin-top: 50px;
+            width: 100%;
+            background-image: url('static/dist/img/putih_2.jpg');
+            color: black;
+            padding: 7px 0;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #button1:hover{
+            margin-top: 50px;
+            width: 100%;
+            background-image: url('static/dist/img/hijau.jpg');
+            color: white;
+            padding: 7px 0;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #button2{
+            margin-top: 30px;
+            width: 100%;
+            background-image: url('static/dist/img/putih_2.jpg');
+            color: black;
+            padding: 7px 0;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #button2:hover{
+            margin-top: 30px;
+            width: 100%;
+            background-image: url('static/dist/img/hijau.jpg');
+            color: white;
+            padding: 7px 0;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .alert {
+            background-color: #f44336;
+            color: white;
+            width: 100%;
+            height: auto;
+            padding: 5px 5px;
+            margin: 0;
+            margin-top: 10px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background">
+    </div>
+    
+    <div class="container" style="margin-top: 160px;">
+        <div class="row">
+          <div class="col-sm">
+            <div style="margin-left: 60px; margin-top: 20px;">
+                <img src="{{ url_for('static', filename='dist/img/belanja.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width: 400px; height: auto;">
+            </div>
+            <div style="text-align: center;">
+                <h3 style="margin-top: 20px; margin-right: 30px;">Selamat Datang, Silahkan Login <br>Untuk Lanjut</h3>
+            </div>
+        </div>
+            <div class="col-sm">
+                <div>
+                    <form action="{{ url_for('login') }}" method="post" style="background-image: url('static/dist/img/bg.jpg'); background-size: cover;">
+                        
+                        <h3 style="margin-top: 15px;">Monitoring Toko</h3>
+                        <p style="color: black; text-align: center;">Silahkan Login</p>
+
+                        <label style="color: black;"><b>Username</b></label>
+                        <input type="text" placeholder="Masukkan Username" name="username" required>
+                        <label style="color: black;"><b>Password</b></label>
+                        <input type="password" placeholder="Masukkan Password" name="password" required>
+                        {% if msg %}
+                            <div class="alert">
+                                <span class="close_ex" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                <strong>Gagal!</strong> Username atau Password salah. Coba lagi.
+                            </div>
+                        {% endif %}
+                        <button type="submit" id="button1"><a>Log In</a></button>
+                        <button type="submit" id="button2"><a>Sign Up</a></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
